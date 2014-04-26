@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 psql -c "DROP TABLE IF EXISTS sentences CASCADE;" $DBNAME
 
+# TODO later distributed by docid, manually fill id
 psql -c """
   CREATE TABLE sentences (
     id bigserial primary key,
@@ -11,5 +12,6 @@ psql -c """
     pos_tags text[],
     dependencies text[],
     ner_tags text[]);
-  DISTRIBUTED BY (document_id);
+  -- DISTRIBUTED BY (document_id)
+  ;
 """ $DBNAME
