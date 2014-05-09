@@ -4,7 +4,7 @@ import ddext
 
 def init():
   ddext.input('sentence_id', 'bigint')
-  ddext.input('publication_id', 'bigint')
+  ddext.input('document_id', 'bigint')
   ddext.input('words', 'text[]')
   ddext.input('gram_len', 'int')
 
@@ -13,9 +13,7 @@ def init():
   ddext.returns('ngram', 'text')
   ddext.returns('count', 'int')
 
-def run(sentence_id, publication_id, words, gram_len):
-  sentence_ids = [sentence_id]
-  docids = [publication_id]
+def run(sentence_id, document_id, words, gram_len):
   ngram = {}
   for i in range(len(words) - gram_len):
     gram = ' '.join(words[i : i + gram_len])
@@ -24,4 +22,5 @@ def run(sentence_id, publication_id, words, gram_len):
     ngram[gram] += 1
     # Optimize: cross product...
     
-  return (sentence_ids, docids, ngram.keys(), ngram.values())
+  return [(sentence_id, document_id, gram, ngram[gram]) for gram in ngram]
+

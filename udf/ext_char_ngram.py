@@ -4,7 +4,7 @@ import ddext
 
 def init():
   ddext.input('sentence_id', 'bigint')
-  ddext.input('publication_id', 'bigint')
+  ddext.input('document_id', 'bigint')
   ddext.input('sentence', 'text')
   ddext.input('gram_len', 'int')
 
@@ -13,12 +13,10 @@ def init():
   ddext.returns('ngram', 'text')
   ddext.returns('count', 'int')
 
-def run(sentence_id, publication_id, sentence, gram_len):
+def run(sentence_id, document_id, sentence, gram_len):
   def IsASCII(s):
     return all(ord(c) < 128 for c in s)
 
-  sentence_ids = [sentence_id]
-  docids = [publication_id]
   ngram = {}
   for i in range(len(sentence) - gram_len):
     s = sentence[i : i + gram_len]
@@ -30,4 +28,4 @@ def run(sentence_id, publication_id, sentence, gram_len):
     # sentence_ids.append(sentence_id)
     # Optimize: cross product...
 
-  return (sentence_ids, docids, ngram.keys(), ngram.values())
+  return [(sentence_id, document_id, gram, ngram[gram]) for gram in ngram]

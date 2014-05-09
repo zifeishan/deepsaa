@@ -9,7 +9,7 @@ import ddext
 
 def init():
   ddext.input('sentence_id', 'bigint')
-  ddext.input('publication_id', 'bigint')
+  ddext.input('document_id', 'bigint')
   ddext.input('sentence', 'text')
   ddext.input('words', 'text[]')
   
@@ -18,14 +18,6 @@ def init():
   ddext.returns('fname', 'text')
   ddext.returns('fval', 'bigint')
 
-def run(sentence_id, publication_id, sentence, words):
-  sentence_ids = [sentence_id]
-  docids = [publication_id]
-  fname = []
-  fval = []
-  fname.append('num_chars')
-  fval.append(len(sentence))
-  fname.append('num_words')
-  fval.append(len(words))
-    
-  return (sentence_ids, docids, fname, fval)
+def run(sentence_id, document_id, sentence, words):
+  yield sentence_id, document_id, 'num_chars', len(sentence)
+  yield sentence_id, document_id, 'num_words', len(words)
