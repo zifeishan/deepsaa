@@ -13,8 +13,9 @@ export DBNAME="deepsaa"
 export PGUSER=zifei
 # ${PGUSER:-`whoami`}
 export PGPASSWORD=${PGPASSWORD:-}
-export PGPORT=5432
-export PGHOST=rocky
-
+# export PGPORT=5432
+# export PGHOST=rocky
+export PGHOST=rambo
+export PGPORT=5433
 # SBT Options
 export SBT_OPTS="-Xmx$MEMORY"
