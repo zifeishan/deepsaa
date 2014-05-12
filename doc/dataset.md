@@ -87,5 +87,7 @@ Zimand, Marius          | 102511
 
 /dfs/madmax/0/zifei/deepsaa/toy_corpus_3/
 
-114 papers, 4902 sentences.
+114 papers, 
+4902 paragraphs,
+43832 sentences,
 32 authors.
