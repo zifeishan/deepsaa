@@ -35,7 +35,8 @@ object Main extends App {
 
   // Configuration has been parsed, execute the Document parser
   val props = new Properties()
-  props.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner, parse, dcoref")
+  // props.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner, parse, dcoref")
+  props.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner")
   props.put("parse.maxlen", conf.maxSentenceLength)
   props.put("threads", conf.numThreads)
   val dp = new DocumentParser(props)
@@ -50,6 +51,8 @@ object Main extends App {
 
     System.err.println(s"Parsing document ${documentId.getOrElse("")}...")
 
+    var sentence_offset = 0
+
     // Output a JSON tuple for each sentence
     documentStr.map(dp.parseDocumentString).map(_.sentences).getOrElse(Nil).foreach { sentenceResult =>
       //Console.println(sentenceResult.sentence)
@@ -59,10 +62,15 @@ object Main extends App {
         "words" -> JsArray(sentenceResult.words.map(JsString.apply)),
         "pos_tags" -> JsArray(sentenceResult.wordsWithPos.map(JsString.apply)),
         "lemma" -> JsArray(sentenceResult.lemma.map(JsString.apply)),
-        "dependencies" -> JsArray(sentenceResult.deps.map(JsString.apply)),
-        "ner_tags" -> JsArray(sentenceResult.nerTags.map(JsString.apply))
+        "dependencies" -> JsNull,
+        // "dependencies" -> JsArray(sentenceResult.deps.map(JsString.apply)),
+        "ner_tags" -> JsArray(sentenceResult.nerTags.map(JsString.apply)),
+        "sentence_offset" -> JsNumber(sentence_offset),
+        "sentence_id" -> JsNull
+        // bigserial required
       ).toSeq)
       Console.println(Json.stringify(json))
+      sentence_offset += 1
     }  
   }
 

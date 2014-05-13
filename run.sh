@@ -5,7 +5,7 @@ export APP_HOME=`pwd`
 # export DEEPDIVE_HOME=`cd ../..; pwd`
 export DEEPDIVE_HOME=`cd $(dirname $0)/../..; pwd`
 
-source env.sh
+# source env.sh
 
 if [ -f $DEEPDIVE_HOME/sbt/sbt ]; then
   echo "DeepDive $DEEPDIVE_HOME"
@@ -29,3 +29,6 @@ $DEEPDIVE_HOME/sbt/sbt "run -c $APP_HOME/application.conf"
 
 # # run the RE evaluation script
 # source $APP_HOME/evaluation/slotfilling/evaluate.sh 2010
+
+## Evaluation
+# psql -d $DBNAME < $APP_HOME/evaluation/evaluation.sql

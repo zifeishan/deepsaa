@@ -1,12 +1,10 @@
 #! /usr/bin/env bash
-psql -c "DROP TABLE IF EXISTS sentences CASCADE;" $DBNAME
+psql -c "DROP TABLE IF EXISTS paragraph_sentences CASCADE;" $DBNAME
 
 # TODO later distributed by docid, manually fill id
 psql -c """
-  CREATE TABLE sentences(
+  CREATE TABLE paragraph_sentences(
     document_id  bigint,
-    pid          bigint,
-    paragraph_id bigint,
     sentence     text,
     words        text[],
     lemma        text[],
