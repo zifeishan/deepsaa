@@ -44,4 +44,10 @@ deepsaa=# select ngram, count(*) as count from f_funcword_2gram group by ngram o
  of a        |  1738
  -RSB- ,     |  1642
  on the      |  1484
- 
+
+ deepsaa=# select COUNT(distinct ngram) from f_char_3gram ;
+ count
+-------
+ 17663
+(1 row)
+
