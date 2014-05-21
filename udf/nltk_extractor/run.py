@@ -14,7 +14,7 @@ def init():
   ddext.returns('sentence', 'text')
   ddext.returns('words', 'text[]')
   # ddext.returns('lemma', 'text[]')
-  # ddext.returns('pos_tags', 'text[]')
+  ddext.returns('pos_tags', 'text[]')
   # ddext.returns('dependencies', 'text[]')
   # ddext.returns('ner_tags', 'text[]')
   ddext.returns('sentence_offset', 'bigint')
@@ -25,7 +25,7 @@ def run(paragraph_id, paragraph):
   if 'counter' not in SD:
     SD['counter'] = 0
   SD['counter'] += 1
-  if SD['counter'] % 10000 == 0:
+  if SD['counter'] % 1000 == 0:
     plpy.info('I have processed %d paragraphs.' % SD['counter'])
 
   nltk.data.path = ['/dfs/rambo/0/zifei/nltk_data']
@@ -42,7 +42,7 @@ def run(paragraph_id, paragraph):
       sent,          # sentence
       words,         # words
                      # lemma
-      # [p[1] for p in nltk.pos_tag(words)],  # pos_tags
+      [p[1] for p in nltk.pos_tag(words)],  # pos_tags
                      # dependencies
                      # ner_tags
       i,             # sentence_offset

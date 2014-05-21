@@ -91,3 +91,23 @@ Zimand, Marius          | 102511
 4902 paragraphs,
 43832 sentences,
 32 authors.
+
+
+## Toy 5
+
+Deprecated: some authors have few publications.
+
+/dfs/madmax/0/zifei/deepsaa/toy_corpus_5/
+
+614 papers,
+149 authors,
+~20k paragraphs
+
+POS tagged by NLTK rather than Stanford.
+
+# Toy 6
+
+108 authors
+360 publications
+14027 paragraphs
+
