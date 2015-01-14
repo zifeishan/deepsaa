@@ -76,9 +76,19 @@ WHERE EXISTS
 ---------------------
 
 -- Show statistics
+drop view if exists tmp_sent;
+
+create view tmp_sent as 
 select is_true, count(*) as count_sentence_author 
 from output_sentence_author group by is_true;
 
+select (select count_sentence_author from tmp_sent where is_true = true) / (select sum(count_sentence_author) from tmp_sent) as ACC_sentence;
+
 -- Show statistics
+drop view if exists tmp_pub;
+
+create view tmp_pub as
 select is_true, count(*) as count_pub_author
 from output_publication_author group by is_true;
+
+select (select count_pub_author from tmp_pub where is_true = true) / (select sum(count_pub_author) from tmp_pub) as ACC_publication;

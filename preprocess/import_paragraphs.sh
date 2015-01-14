@@ -1,9 +1,15 @@
 IMPORT_DIR=/dfs/madmax/0/dbritz/arxiv/out/
 
+if [ $# = 1 ]; then
+  export IMPORT_DIR=$1
+fi
+echo "#######################"
+echo "IMPORT_DIR: $IMPORT_DIR"
+echo "#######################"
 export APP_HOME=`cd $(dirname $0)/../; pwd`
 export DEEPDIVE_HOME=`cd $(dirname $0)/../../../; pwd`
 
-. $APP_HOME/env.sh
+# . $APP_HOME/env.sh
 
 psql -c """
 
