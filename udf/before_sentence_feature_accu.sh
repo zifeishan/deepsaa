@@ -5,7 +5,7 @@ psql -c """
   CREATE TABLE f_$1 (
     sentence_id bigint,
     publication_id bigint,
-    fname text,
-    fval real)
+    fname_prefix text,
+    fname text)
   DISTRIBUTED BY (publication_id);
 """ $DBNAME

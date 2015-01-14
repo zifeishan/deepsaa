@@ -6,6 +6,6 @@ psql -c """
   CREATE TABLE f_doc_stats (
     publication_id bigint,
     fname text,
-    fval float)
+    fval real)
 DISTRIBUTED BY (publication_id);
 """ $DBNAME

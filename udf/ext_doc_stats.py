@@ -8,27 +8,33 @@ def init():
   ddext.input('publication_id', 'bigint')
   ddext.input('datestamp', 'text')
   ddext.input('title', 'text')
-  ddext.input('fulltext', 'text')
+  # ddext.input('fulltext', 'text')
+  ddext.input('sentences', 'text[]')
   
   ddext.returns('publication_id', 'bigint')
   ddext.returns('fname', 'text')
-  ddext.returns('fval', 'float')
+  ddext.returns('fval', 'real')
 
 def run(publication_id, datestamp, title, fulltext):
-  ids = [publication_id]
   fname = []
   fval = []
   # TODO not working perfectly...
+  # words = fulltext.split(' ');
+
+  fulltext = ''
+  for s in sentences: fulltext += s
   words = fulltext.split(' ');
   fname.append('num_chars')
-  fval.append(len(fulltext))
+  fval.append(sum([len(w) for w in words]))
   fname.append('num_words')
   fval.append(len(words))
-  fname.append('num_chars_title')
-  fval.append(len(title))
+  if title:
+    fname.append('num_chars_title')
+    fval.append(len(title))
 
   fname.append('avg_word_length')
   avg_wl = sum([len(w) for w in words]) / float(len(words))
   fval.append(avg_wl)
 
-  return (ids, fname, fval)
+  for i in range(len(fname)):
+    yield publication_id, fname[i], fval[i]

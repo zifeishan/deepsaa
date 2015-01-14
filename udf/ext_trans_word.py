@@ -26,14 +26,24 @@ def init():
 def run(sentence_id, document_id, words, pos_tags, gram_len):
   ngram = {}
   content_pos_prefixes = ['NN', 'JJ', 'VB', 'RB']
+  punc_indexes = [i for i in range(len(pos_tags)) if pos_tags[i][0] not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+
   function_word_indexes = [i for i in range(len(pos_tags)) if pos_tags[i][:2] not in content_pos_prefixes]
   set_indexes = set(function_word_indexes)
 
-  for i in range(len(words) - gram_len):
-    if set_indexes.issuperset(range(i, i + gram_len)):
+  # extract each word after punctuation if it is a punction word
+
+  for i in punc_indexes:
+    gramrange = range(i+1, i+1+gram_len)
+    if i + gram_len + 1 >= len(words): continue
+
+    if any([j in punc_indexes for j in gramrange]): continue 
+    # transition words should not be punctuations
+
+    if set_indexes.issuperset(gramrange):
       # All words are function words
       gram_arr = []
-      for j in range(i, i + gram_len):
+      for j in gramrange:
         if pos_tags[j] == 'CD':  # cardinal number
           gram_arr.append('-NUMBER-')
         else:
@@ -41,6 +51,7 @@ def run(sentence_id, document_id, words, pos_tags, gram_len):
 
       gram = ' '.join(gram_arr)
       # gram = ' '.join(words[i : i + gram_len])
+
       if gram not in ngram:
         ngram[gram] = 0
       ngram[gram] += 1

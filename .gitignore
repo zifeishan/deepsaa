@@ -54,3 +54,6 @@ docs/_build/
 
 # Another repo
 cs341/
+
+.DS_Store
+
