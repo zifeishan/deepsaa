@@ -1,0 +1,18 @@
+Kleinberg, Jon M.	Kleinberg, Jon
+Huberman, Bernardo	Huberman, Bernardo
+Backstrom, Lars	Backstrom, Lars
+Huberman, Bernardo A	Huberman, Bernardo
+Karrer, Brian	Karrer, Brian
+Christos Faloutsos	Christos Faloutsos
+Kleinberg, Jon	Kleinberg, Jon
+Adamic, Lada	Adamic, Lada
+Huberman, B. A.	Huberman, Bernardo
+Adamic, L. A.	Adamic, Lada
+Leskovec, J.	Leskovec, Jure
+Huberman, Bernardo A.	Huberman, Bernardo
+Pentland, Alex	Pentland, Alex
+Backstrom, L.	Backstrom, Lars
+Adamic, Lada A.	Adamic, Lada
+Pentland	Pentland, Alex
+Ugander, Johan	Ugander, Johan
+Leskovec, Jure	Leskovec, Jure
